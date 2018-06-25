@@ -63,11 +63,6 @@ passport.use(new JWTStrategy({
 app.use('/auth', auth);
 app.use('/user', passport.authenticate('jwt',{session: false}),user);
 
-app.get('/api/messages', (req, res) => {
-  res.json([
-    {message: 'Hello, word!'},
-    {message: "Yet another Hello World!"}
-    ]);
-});
+
 
 app.listen(8080, () => console.log("Running on 8080"))

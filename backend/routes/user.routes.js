@@ -11,4 +11,11 @@ router.get('/profile', function(req, res, next) {
     res.send(req.user);
 });
 
+router.get('/messages', (req, res) => {
+    res.json([
+      {message: 'Hello, word!'},
+      {message: "Yet another Hello World!"}
+      ]);
+  });
+
 export default router;
