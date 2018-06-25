@@ -3,7 +3,7 @@
       <div class="col-md-6 mx-auto">
               <div class="card card-body">
                   <h3 class="text-center mb-4">Login</h3>
-                  <form #companyForm="ngForm" (ngSubmit)="onSubmit()">
+                  <form #userForm="ngForm" (ngSubmit)="onSignin(userForm)">
                       <div class="form-group has-error">
                           <input class="form-control input-lg" [(ngModel)]="model.email" placeholder="E-mail Address" id="email" name="email" type="text">
                       </div>
@@ -15,7 +15,7 @@
                               <input name="terms" type="checkbox">I have read and agree to the <a href="#">terms of service</a>
                           </label>
                       </div> -->
-                      <input class="btn btn-lg btn-info btn-block" (click)="login()" value="Login" type="submit">
+                      <input class="btn btn-lg btn-info btn-block" value="Login" type="submit">
                   </form>
               </div>
       </div>

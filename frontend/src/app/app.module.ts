@@ -15,8 +15,12 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'home',
+    component: AppComponent
   }
-]
+];
 
 @NgModule({
   declarations: [
