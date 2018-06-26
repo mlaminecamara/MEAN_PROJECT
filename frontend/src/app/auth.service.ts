@@ -17,7 +17,8 @@ export class AuthService {
     this.http.post('http://localhost:8080/auth/login', loginData).subscribe(resp => {
       this.data = resp;
       localStorage.setItem('jwtToken', this.data.token);
-      this.router.navigate(['home']);
+      console.log(localStorage.getItem('jwtToken'));
+      this.router.navigate(['/']);
     });
   }
 
