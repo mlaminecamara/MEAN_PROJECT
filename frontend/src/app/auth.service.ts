@@ -16,9 +16,9 @@ export class AuthService {
     const loginData = { email: email, password: password };
     this.http.post('http://localhost:8080/auth/login', loginData).subscribe(resp => {
       this.data = resp;
+      console.log(this.data);
       localStorage.setItem('jwtToken', this.data.token);
-      console.log(localStorage.getItem('jwtToken'));
-      this.router.navigate(['/']);
+      this.router.navigate(['home']);
     });
   }
 
@@ -34,8 +34,9 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('jwtToken');
+    console.log(token);
     // If token not expired, return true
-    return !this.jwtHelper.isTokenExpired(token);
+    return !this.jwtHelper.getTokenExpirationDate(token) || !this.jwtHelper.isTokenExpired(token);
   }
 
 }
