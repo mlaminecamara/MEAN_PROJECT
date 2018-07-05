@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { NavbarComponent } from './home/navbar/navbar.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
   {
@@ -25,6 +27,11 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'messages',
+    component: MessagesComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -33,7 +40,9 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +51,7 @@ const routes: Routes = [
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
-          return localStorage.getItem('access_token');
+          return localStorage.getItem('jwtToken');
         },
         whitelistedDomains: ['localhost:8080'],
         blacklistedRoutes: ['localhost:8080/auth/']

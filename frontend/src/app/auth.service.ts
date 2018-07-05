@@ -32,10 +32,21 @@ export class AuthService {
     });
   }
 
+  logout() {
+    // Remove tokens and expiry time from localStorage
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('expires_at');
+    // Go back to the home route
+    this.router.navigate(['login']);
+  }
+
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('jwtToken');
     // If token not expired, return true
+    if (token != null) {
     return !this.jwtHelper.getTokenExpirationDate(token) || !this.jwtHelper.isTokenExpired(token);
+    }
   }
 
 }
