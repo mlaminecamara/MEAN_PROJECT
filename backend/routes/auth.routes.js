@@ -4,7 +4,7 @@ import AuthController from '../controllers/auth.controller';
 const router = new Router();
 
 router.post('/register', (req, res) => {
-    console.log(req)
+    console.log(req.body)
     AuthController.register(req, res);
 });
 

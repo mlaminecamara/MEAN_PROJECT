@@ -6,7 +6,7 @@ import cors from 'cors';
 // DATABASE
 //MongoDB
 import mongodb from './mongodb.js'
-const db_name = "balaizProto"
+const db_name = "microbloggos"
 mongodb.connectDb(db_name);
 //TODO create boilerplate for Sequelize in cas of SQL
 //SQL
@@ -25,6 +25,7 @@ const LocalStrategy = require('passport-local').Strategy;
 //ROUTES
 import user from './routes/user.routes';
 import auth from './routes/auth.routes';
+import tweets from './routes/tweets.routes';
 
 const app = express();
 app.use(bodyParser.urlencoded({
@@ -48,6 +49,7 @@ passport.use(new JWTStrategy({
     secretOrKey   : 'SecretToEditAndAddToignoredfile'
     },
     function (jwtPayload, cb) {
+        console.log(jwtPayload);
         //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
         return User.findById(jwtPayload.id)
             .then(user => {
@@ -56,13 +58,14 @@ passport.use(new JWTStrategy({
             .catch(err => {
                 return cb(err);
             });
+         
     }
 ))
 
 // Routes
 app.use('/auth', auth);
 app.use('/user', passport.authenticate('jwt',{session: false}),user);
-
+app.use('/tweets', passport.authenticate('jwt',{session: false}),tweets);
 
 
 app.listen(8080, () => console.log("Running on 8080"))

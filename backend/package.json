@@ -8,7 +8,7 @@
     "dev": "babel-watch server.js"
   },
   "keywords": [],
-  "author": "Rayed Benbrahim",
+  "author": "Mohamed Camara",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
